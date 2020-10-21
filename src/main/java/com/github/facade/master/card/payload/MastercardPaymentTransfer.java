@@ -122,6 +122,46 @@ public class MastercardPaymentTransfer {
         this.recipientNameOnAccount = recipientNameOnAccount;
     }
 
+    public MastercardPaymentTransfer(
+            String partnerId, String amount, String currency,
+            String senderUriIdentifier, String senderUriExpYear, String senderUriExpMonth,
+            String senderUriCvc, String senderAccountUri, String senderFirstName,
+            String senderLastName, String senderAddressLine1, String senderCity,
+            String senderPostalCode, String senderCountrySubdivision, String senderCountry,
+            String fundingSource, String recipientUriScheme, String recipientUriIdentifier,
+            String recipientUriExpYear, String recipientUriExpMonth, String recipientUriCvc,
+            String recipientAccountUri, String recipientFirstName, String recipientLastName,
+            String recipientAddressLine1, String recipientCity, String recipientPostalCode, String recipientNameOnAccount) {
+        this.partnerId = partnerId;
+        this.amount = amount;
+        this.currency = currency;
+        this.senderUriIdentifier = senderUriIdentifier;
+        this.senderUriExpYear = senderUriExpYear;
+        this.senderUriExpMonth = senderUriExpMonth;
+        this.senderUriCvc = senderUriCvc;
+        this.senderAccountUri = senderAccountUri;
+        this.senderFirstName = senderFirstName;
+        this.senderLastName = senderLastName;
+        this.senderAddressLine1 = senderAddressLine1;
+        this.senderCity = senderCity;
+        this.senderPostalCode = senderPostalCode;
+        this.senderCountrySubdivision = senderCountrySubdivision;
+        this.senderCountry = senderCountry;
+        this.fundingSource = fundingSource;
+        this.recipientUriScheme = recipientUriScheme;
+        this.recipientUriIdentifier = recipientUriIdentifier;
+        this.recipientUriExpYear = recipientUriExpYear;
+        this.recipientUriExpMonth = recipientUriExpMonth;
+        this.recipientUriCvc = recipientUriCvc;
+        this.recipientAccountUri = recipientAccountUri;
+        this.recipientFirstName = recipientFirstName;
+        this.recipientLastName = recipientLastName;
+        this.recipientAddressLine1 = recipientAddressLine1;
+        this.recipientCity = recipientCity;
+        this.recipientPostalCode = recipientPostalCode;
+        this.recipientNameOnAccount = recipientNameOnAccount;
+    }
+
     public String getPartnerId() {
         return partnerId;
     }
