@@ -23,11 +23,15 @@ public class FacadeMasterCard implements IFacadeMasterCard {
 
     private static FacadeMasterCard instance;
 
-    public static FacadeMasterCard getInstance(String consumerKey, String keyAlias, String keyPassword, String privateKey, boolean isDebug, boolean isSandbox) {
+    public static FacadeMasterCard initial(String consumerKey, String keyAlias, String keyPassword, String privateKey, boolean isDebug, boolean isSandbox) {
         if (Objects.isNull(instance)) {
             instance = new FacadeMasterCard();
             init(consumerKey, keyAlias, keyPassword, privateKey, isDebug, isSandbox);
         }
+        return instance;
+    }
+
+    public static FacadeMasterCard getInstance() {
         return instance;
     }
 
