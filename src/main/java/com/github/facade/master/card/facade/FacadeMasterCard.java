@@ -12,6 +12,7 @@ import org.slf4j.LoggerFactory;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -19,33 +20,22 @@ public class FacadeMasterCard implements IFacadeMasterCard {
 
     private static final Logger log = LoggerFactory.getLogger(FacadeMasterCard.class);
 
-    private final String consumerKey;
+    private static FacadeMasterCard instance;
 
-    private final String keyAlias;
-
-    private final String keyPassword;
-
-    private final String privateKey;
-
-    private final boolean isDebug;
-
-    private final boolean isSandbox;
-
-    public FacadeMasterCard(String consumerKey, String keyAlias, String keyPassword, String privateKey, boolean isDebug, boolean isSandbox) {
-        this.consumerKey = consumerKey;
-        this.keyAlias = keyAlias;
-        this.keyPassword = keyPassword;
-        this.privateKey = privateKey;
-        this.isDebug = isDebug;
-        this.isSandbox = isSandbox;
+    public static FacadeMasterCard getInstance(String consumerKey, String keyAlias, String keyPassword, String privateKey, boolean isDebug, boolean isSandbox) {
+        if (Objects.isNull(instance)) {
+            instance = new FacadeMasterCard();
+            init(consumerKey, keyAlias, keyPassword, privateKey, isDebug, isSandbox);
+        }
+        return instance;
     }
 
-    public void init() {
+    private static void init(String consumerKey, String keyAlias, String keyPassword, String privateKey, boolean isDebug, boolean isSandbox) {
         try {
-            InputStream is = new FileInputStream(this.privateKey);
-            ApiConfig.setAuthentication(new OAuthAuthentication(this.consumerKey, is, this.keyAlias, this.keyPassword));
-            ApiConfig.setDebug(this.isDebug);
-            ApiConfig.setSandbox(this.isSandbox);
+            InputStream is = new FileInputStream(privateKey);
+            ApiConfig.setAuthentication(new OAuthAuthentication(consumerKey, is, keyAlias, keyPassword));
+            ApiConfig.setDebug(isDebug);
+            ApiConfig.setSandbox(isSandbox);
         } catch (FileNotFoundException e) {
             log.error("Enter: {}", e.getMessage());
         }
