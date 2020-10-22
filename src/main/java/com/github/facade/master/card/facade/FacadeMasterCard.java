@@ -1,5 +1,6 @@
 package com.github.facade.master.card.facade;
 
+import com.github.facade.master.card.exceptions.MastercardInitException;
 import com.github.facade.master.card.payload.MastercardPaymentTransfer;
 import com.mastercard.api.core.ApiConfig;
 import com.mastercard.api.core.exception.ApiException;
@@ -38,6 +39,7 @@ public class FacadeMasterCard implements IFacadeMasterCard {
             ApiConfig.setSandbox(isSandbox);
         } catch (FileNotFoundException e) {
             log.error("Enter: {}", e.getMessage());
+            throw new MastercardInitException(e.getMessage());
         }
     }
 
